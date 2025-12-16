@@ -1,0 +1,14 @@
+services:
+  qnetd:
+    container_name: proxmox-qdevice
+    image: ghcr.io/nicolaeser/proxmox-qdevice:latest
+    ports:
+      - "22:22"
+      - "5403:5403"
+    environment:
+      - NEW_ROOT_PASSWORD=root
+    volumes:
+      - /run/sshd
+      - <LOCAL-STORAGE>:/etc/corosync
+    restart: unless-stopped
+    hostname: <MY FQDN>
